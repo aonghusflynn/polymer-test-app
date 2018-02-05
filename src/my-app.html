@@ -20,6 +20,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/polymerfire/firebase-app.html">
+<link rel="import" href="../bower_components/polymerfire/firebase-auth.html">
 <link rel="import" href="my-icons.html">
 
 <link rel="lazy-import" href="my-view1.html">
@@ -116,6 +118,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </app-header-layout>
     </app-drawer-layout>
   </template>
+
+  <firebase-app
+  auth-domain="btf-stage.firebaseapp.com"
+  database-url="https://btf-stage.firebaseio.com"
+  api-key="AIzaSyAa6bfOZam5mgzkdPNl0kty_xhZXu6svLk"
+  storage-bucket="btf-stage.appspot.com"
+  messaging-sender-id="51959758995">
+</firebase-app>
+<firebase-auth id="auth" user="{{user}}" provider="google" on-error="handleError">
+</firebase-auth>
 
   <script>
     class MyApp extends Polymer.Element {
