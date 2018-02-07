@@ -6,53 +6,141 @@
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../bower_components/iron-icons/image-icons.html">
 <link rel="import" href="../bower_components/iron-iconset-svg/iron-iconset-svg.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/polymerfire/firebase-auth.html">
+<link rel="import" href="../bower_components/polymerfire/firebase-app.html">
 <dom-module id="my-new-view">
-  <!-- Defines the element's style and local DOM -->
-  <template>
+    <!-- Defines the element's style and local DOM -->
+    <template id="app" is="dom-bind">
     <style>
       :host {
-        display: block;
+        font-family: Roboto, sans-serif;
+        padding: 36px;
 
         padding: 16px;
       }
+      table {
+        margin: 24px 0;
+        border: 1px solid #ccc;
+        border-collapse: collapse;
+      }
+      th, td {
+        padding: 8px;
+        border-bottom: 1px solid #ccc;
+      }
+      th {
+        text-align: right;
+      }
+      button {
+        background: #2196F3;
+        color: white;
+        border: 0;
+        border-radius: 3px;
+        text-transform: uppercase;
+        padding: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+      }
+      input {
+        padding: 8px;
+        font-size: 14px;
+        font-family: Roboto, sans-serif;
+        border: 1px solid #ddd;
+        display: block;
+        max-width: 300px;
+        margin-bottom: 8px;
+      }
+      .error {
+        background: #f44336;
+        color: white;
+        padding: 8px;
+        font-size: 14px;
+        border-radius: 3px;
+        margin: 16px auto;
+        max-width: 800px;
+      }
     </style>
 
-    <h1>New view</h1>
-    <paper-card image="../images/donuts.png">
-        <div class="card-content">
-          <div class="cafe-header">Cafe Basilico
-            <div class="cafe-location cafe-light">
-              <iron-icon icon="communication:location-on"></iron-icon>
-              <span>250ft</span>
-            </div>
-          </div>
-          <div class="cafe-rating">
-            <iron-icon class="star" icon="star"></iron-icon>
-            <iron-icon class="star" icon="star"></iron-icon>
-            <iron-icon class="star" icon="star"></iron-icon>
-            <iron-icon class="star" icon="star"></iron-icon>
-            <iron-icon class="star" icon="star"></iron-icon>
-          </div>
-          <p>$・Italian, Cafe</p>
-          <p class="cafe-light">Small plates, salads &amp; sandwiches in an intimate setting.</p>
-        </div>
-        <div class="card-actions">
-          <div class="horizontal justified">
-            <paper-icon-button icon="icons:event"></paper-icon-button>
-            <paper-button>5:30PM</paper-button>
-            <paper-button>7:30PM</paper-button>
-            <paper-button>9:00PM</paper-button>
-            <paper-button class="cafe-reserve">Reserve</paper-button>
-          </div>
-        </div>
-      </paper-card>
+<firebase-app
+auth-domain="btf-stage.firebaseapp.com"
+database-url="https://btf-stage.firebaseio.com"
+api-key="AIzaSyAa6bfOZam5mgzkdPNl0kty_xhZXu6svLk"
+storage-bucket="btf-stage.appspot.com"
+messaging-sender-id="51959758995">
+</firebase-app>
+<firebase-auth id="auth" user="{{user}}" provider="google" on-error="handleError">
+</firebase-auth>
+
+<div class="error" hidden$="[[!error]]">[[error.code]]: [[error.message]]</div>
+<div hidden$="[[user]]">
+<h3>Email/Password</h3>
+<form on-submit="signInWithEmailAndPassword">
+  <input value="{{email::input}}" type="email" placeholder="Email">
+  <input value="{{password::input}}" type="password" placeholder="Password">
+  <button type="submit" on-tap="signInWithEmailAndPassword">Sign In</button>
+  <button type="button" on-tap="createUserWithEmailAndPassword">Sign Up</button>
+</form>
+<h3>Anonymous/OAuth</h3>
+<p>
+  <button on-tap="signInAnonymously">Sign In Anonymously</button>
+  <button on-tap="signInWithGoogle">Sign In With Google</button>
+</p>
+</div>
+<div hidden$="[[!user]]">
+<table>
+  <tr><th>uid</th> <td>[[user.uid]]</td></tr>
+  <tr><th>displayName</th> <td>[[user.displayName]]</td></tr>
+  <tr><th>email</th> <td>[[user.email]]</td></tr>
+  <tr><th>emailVerified</th> <td>[[user.emailVerified]]</td></tr>
+</table>
+
+<button on-tap="signOut">Sign Out</button>
+</div>
   </template>
-  <script>
-    // Your new element extends the Polymer.Element base class
-    class MyNewView extends Polymer.Element {
-      static get is() { return 'my-new-view'; }
-    }
-    //Now, register your new custom element so the browser can use it
-    customElements.define(MyNewView.is, MyNewView);
-  </script>
+    <script>
+        // Your new element extends the Polymer.Element base class
+        class MyNewView extends Polymer.Element {
+            static get is() {
+                return 'my-new-view';
+            }
+            signInAnonymously() {
+                this.error = null;
+                this.$.auth.signInAnonymously();
+            }
+
+            signInWithGoogle() {
+                console.log("In signInWithGoogle");
+                this.error = null;
+                this.$.auth.signInWithPopup();
+            }
+
+            signInWithEmailAndPassword(e) {
+                if (e) {
+                    e.preventDefault();
+                }
+                this.error = null;
+                this.$.auth.signInWithEmailAndPassword(this.email, this.password);
+                this.email = null;
+                this.password = null;
+            }
+
+            createUserWithEmailAndPassword() {
+                this.error = null;
+                this.$.auth.createUserWithEmailAndPassword(this.email, this.password);
+                this.email = null;
+                this.password = null;
+            }
+
+            signOut() {
+                this.error = null;
+                this.$.auth.signOut();
+            }
+        }
+
+
+        //Now, register your new custom element so the browser can use it
+        customElements.define(MyNewView.is, MyNewView);
+    </script>
 </dom-module>
