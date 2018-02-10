@@ -101,22 +101,29 @@ messaging-sender-id="51959758995">
   </template>
     <script>
         // Your new element extends the Polymer.Element base class
-        class MyNewView extends Polymer.Element {
-            static get is() {
-                return 'my-new-view';
-            }
-            signInAnonymously() {
+        Polymer({
+            is:'my-new-view'
+            ,
+            properties: {
+           user:{
+               type: Object
+           },
+           statusKnown:{
+            type: Object
+           }
+        },
+            signInAnonymously:function() {
                 this.error = null;
                 this.$.auth.signInAnonymously();
-            }
+            },
 
-            signInWithGoogle() {
+            signInWithGoogle:function() {
                 console.log("In signInWithGoogle");
                 this.error = null;
                 this.$.auth.signInWithPopup();
-            }
+            },
 
-            signInWithEmailAndPassword(e) {
+            signInWithEmailAndPassword:function(e) {
                 if (e) {
                     e.preventDefault();
                 }
@@ -124,23 +131,23 @@ messaging-sender-id="51959758995">
                 this.$.auth.signInWithEmailAndPassword(this.email, this.password);
                 this.email = null;
                 this.password = null;
-            }
+            },
 
-            createUserWithEmailAndPassword() {
+            createUserWithEmailAndPassword:function() {
                 this.error = null;
                 this.$.auth.createUserWithEmailAndPassword(this.email, this.password);
                 this.email = null;
                 this.password = null;
-            }
+            },
 
-            signOut() {
+            signOut:function() {
                 this.error = null;
                 this.$.auth.signOut();
             }
-        }
+        });
 
 
         //Now, register your new custom element so the browser can use it
-        customElements.define(MyNewView.is, MyNewView);
+       // customElements.define(MyNewView.is, MyNewView);
     </script>
 </dom-module>
