@@ -10,10 +10,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/polymerfire/firebase-auth.html">
+<link rel="import" href="../bower_components/polymerfire/firebase-query.html">
 <link rel="import" href="shared-styles.html">
+
+
 
 <dom-module id="my-view1">
   <template>
+    <firebase-auth id="auth" user="{{user}}" provider="google" on-error="handleError">
+    <firebase-query
+    id="query"
+    path="/users/[[user.uid]]/matches"
+    data="{{matches}}">
+  </firebase-query>
+    
+
     <style include="shared-styles">
       :host {
         display: block;
@@ -23,15 +36,46 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <div class="card">
-      <div class="circle">1</div>
-      <h1>Login</h1>
-        <paper-button on-tap="login">Login</paper-button>
+      <ul id="matches-list">
+      <template is="dom-repeat" items="[[matches]]" as="match">
+        <li>[[match.title]]</li>
+      </template>
+    </ul>
+
+    
+    <paper-input label="Add a match" id="input" ></paper-input>
+    <div id="control">
+      
+      <paper-button raised  id="add" on-click="add" >Add</paper-button>
+      
+    </div>
+    
     </div>
   </template>
 
   <script>
     class MyView1 extends Polymer.Element {
       static get is() { return 'my-view1'; }
+       /**
+        * Object describing property-related metadata used by Polymer features
+        */
+      static get properties() {
+        return {
+          matches:{type:Object},
+          user:{type:Object}
+        };
+      }
+      
+      add(){
+        console.log(this.$.user);
+        
+        this.$.query.ref.push({
+          title:this.$.input.value
+        });
+        this.$.input.value=null;
+        
+      }
+
     }
 
 
