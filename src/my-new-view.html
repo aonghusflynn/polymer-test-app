@@ -101,26 +101,23 @@
         // Your new element extends the Polymer.Element base class
         class MyNewView extends Polymer.Element {
             static get is(){return 'my-new-view';}
-            static get properties() { return {
+            static get properties() { 
+            return {
               email:{
                 type: Object
               },
               password:{
                 type:Object
               },
-           user:{
-               type: Object
-           },
-           statusKnown:{
-            type: Object
-           }
-        }
-        }
-            signInAnonymously() {
-                this.error = null;
-                this.$.auth.signInAnonymously();
+              user:{
+                type: Object
+              },
+              statusKnown:{
+                type: Object
+              }
             }
-
+        }
+           
             signInWithGoogle() {
                 console.log("In signInWithGoogle");
                 this.error = null;
