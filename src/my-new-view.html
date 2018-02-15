@@ -61,6 +61,12 @@
         margin: 16px auto;
         max-width: 800px;
       }
+
+      .avatar{
+        width: 150px;
+        height: 150px;
+        border-radius: 75px;
+      }
     </style>
 
 
@@ -87,7 +93,7 @@
 
 <div hidden$="[[!user]]">
 <table>
-  <img src="[[user.photoURL]]"/>
+  <img src="[[user.photoURL]]" class="avatar"/>
   <tr><th>uid</th> <td>[[user.uid]]</td></tr>
   <tr><th>displayName</th> <td>[[user.displayName]]</td></tr>
   <tr><th>email</th> <td>[[user.email]]</td></tr>
