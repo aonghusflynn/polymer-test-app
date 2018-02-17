@@ -35,7 +35,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
-    <div class="card">
+    <div class="card" hidden$="[[!user]]">
       <ul id="matches-list">
       <template is="dom-repeat" items="[[matches]]" as="match">
         <li>[[match.title]]</li>
@@ -72,14 +72,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.$.query.ref.push({
           title:this.$.input.value
         });
-        this.$.input.value=null;
-        
+        this.$.input.value=null; 
       }
-
     }
-
-
-
     window.customElements.define(MyView1.is, MyView1);
   </script>
 </dom-module>

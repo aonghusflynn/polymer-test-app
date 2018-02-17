@@ -10,6 +10,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
+<link rel="import" href="../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../bower_components/neon-animation/neon-animations.html">
+<link rel="stylesheet" href="../bower_components/polymerfire/firebase-auth.html">
+
 
 <dom-module id="my-view3">
   <template>
@@ -20,13 +28,82 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         padding: 10px;
       }
     </style>
+    <firebase-auth id="auth" user="{{user}}" provider="google" on-error="handleError"></firebase-auth>
+    <iron-form id="profile">
+        <form is="iron-form" id="form" method="post" action="/form/handler">
+          
+          <paper-input label="Name" always-float-label value="[[user.displayName]]"></paper-input>
+          <paper-input label="e-mail" always-float-label value="[[user.email]]"></paper-input>
 
-    <div class="card">
-      <div class="circle">3</div>
-      <h1>View Three</h1>
-      <p>Modus commodo minimum eum te, vero utinam assueverit per eu.</p>
-      <p>Ea duis bonorum nec, falli paulo aliquid ei eum.Has at minim mucius aliquam, est id tempor laoreet.Pro saepe pertinax ei, ad pri animal labores suscipiantur.</p>
-    </div>
+          <paper-dropdown-menu label="Year of birth">
+              <paper-listbox slot="dropdown-content" class="dropdown-content">
+                  <paper-item>2019</paper-item>
+                  <paper-item>2018</paper-item>
+                  <paper-item>2017</paper-item>
+                  <paper-item>2016</paper-item>
+                  <paper-item>2015</paper-item>
+                  <paper-item>2014</paper-item>
+                  <paper-item>2013</paper-item>
+                  <paper-item>2012</paper-item>
+                  <paper-item>2011</paper-item>
+                  <paper-item>2010</paper-item>
+                  <paper-item>2009</paper-item>
+                  <paper-item>2008</paper-item>
+                  <paper-item>2007</paper-item>
+                  <paper-item>2006</paper-item>
+                  <paper-item>2005</paper-item>
+                  <paper-item>2004</paper-item>
+                  <paper-item>2003</paper-item>
+                  <paper-item>2002</paper-item>
+                  <paper-item>2001</paper-item>
+                  <paper-item>2000</paper-item>
+                  <paper-item>1999</paper-item>
+                  <paper-item>1998</paper-item>
+                  <paper-item>1997</paper-item>
+                  <paper-item>1996</paper-item>
+                  <paper-item>1995</paper-item>
+                  <paper-item>1994</paper-item>
+                  <paper-item>1993</paper-item>
+                  <paper-item>1992</paper-item>
+                  <paper-item>1991</paper-item>
+                  <paper-item>1990</paper-item>
+                  <paper-item>1989</paper-item>
+                  <paper-item>1988</paper-item>
+                  <paper-item>1987</paper-item>
+                  <paper-item>1986</paper-item>
+                  <paper-item>1985</paper-item>
+                  <paper-item>1984</paper-item>
+                  <paper-item>1983</paper-item>
+                  <paper-item>1982</paper-item>
+                  <paper-item>1981</paper-item>
+                  <paper-item>1980</paper-item>
+                  <paper-item>1979</paper-item>
+                  <paper-item>1978</paper-item>
+                  <paper-item>1977</paper-item>
+                  <paper-item>1976</paper-item>
+                  <paper-item>1975</paper-item>
+                  <paper-item>1974</paper-item>
+                  <paper-item>1973</paper-item>
+                  <paper-item>1972</paper-item>
+                  <paper-item>1971</paper-item>
+                  <paper-item>1970</paper-item>
+                  <paper-item>1969</paper-item>
+                  <paper-item>1968</paper-item>
+                  <paper-item>1967</paper-item>
+                  <paper-item>1966</paper-item>
+                  <paper-item>1965</paper-item>
+                  <paper-item>1964</paper-item>
+                  <paper-item>1963</paper-item>
+                  <paper-item>1962</paper-item>
+                  <paper-item>1961</paper-item>
+                  <paper-item>1960</paper-item>                   
+              </paper-listbox>
+            </paper-dropdown-menu>
+        </form>    
+    </iron-form>
+        
+
+
   </template>
 
   <script>

@@ -61,20 +61,18 @@
         margin: 16px auto;
         max-width: 800px;
       }
+
+      .avatar{
+        width: 150px;
+        height: 150px;
+        border-radius: 75px;
+      }
     </style>
 
-<firebase-app
-auth-domain="btf-stage.firebaseapp.com"
-database-url="https://btf-stage.firebaseio.com"
-api-key="AIzaSyAa6bfOZam5mgzkdPNl0kty_xhZXu6svLk"
-storage-bucket="btf-stage.appspot.com"
-messaging-sender-id="51959758995">
-</firebase-app>
-<firebase-auth id="auth" user="{{user}}" provider="google" on-error="handleError">
-</firebase-auth>
+
 
 <!-- <div class="error" hidden$="[[!error]]">[[error.code]]: [[error.message]]</div> -->
-<div hidden$="[[user]]">
+<!-- div hidden$="[[user]]">
 <h3>Email/Password</h3>
 <form on-submit="signInWithEmailAndPassword">
   <input value="{{email::input}}" type="email" placeholder="Email">
@@ -87,10 +85,15 @@ messaging-sender-id="51959758995">
   <button on-click="signInAnonymously">Sign In Anonymously</button>
   <button on-click="signInWithGoogle">Sign In With Google</button>
 </p>
-</div>
+</div-->
+
+<firebase-auth id="auth" user="{{user}}" provider="google" on-error="handleError"></firebase-auth>
+
+
+
 <div hidden$="[[!user]]">
 <table>
-  <img src="[[user.photoURL]]"/>
+  <img src="[[user.photoURL]]" class="avatar"/>
   <tr><th>uid</th> <td>[[user.uid]]</td></tr>
   <tr><th>displayName</th> <td>[[user.displayName]]</td></tr>
   <tr><th>email</th> <td>[[user.email]]</td></tr>
@@ -104,26 +107,23 @@ messaging-sender-id="51959758995">
         // Your new element extends the Polymer.Element base class
         class MyNewView extends Polymer.Element {
             static get is(){return 'my-new-view';}
-            static get properties() { return {
+            static get properties() { 
+            return {
               email:{
                 type: Object
               },
               password:{
                 type:Object
               },
-           user:{
-               type: Object
-           },
-           statusKnown:{
-            type: Object
-           }
-        }
-        }
-            signInAnonymously() {
-                this.error = null;
-                this.$.auth.signInAnonymously();
+              user:{
+                type: Object
+              },
+              statusKnown:{
+                type: Object
+              }
             }
-
+        }
+           
             signInWithGoogle() {
                 console.log("In signInWithGoogle");
                 this.error = null;
@@ -152,8 +152,6 @@ messaging-sender-id="51959758995">
                 this.$.auth.signOut();
             }
         }
-
-
         //Now, register your new custom element so the browser can use it
         customElements.define(MyNewView.is, MyNewView);
     </script>
