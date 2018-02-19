@@ -16,7 +16,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
 <link rel="import" href="../bower_components/paper-item/paper-item.html">
 <link rel="import" href="../bower_components/neon-animation/neon-animations.html">
-<link rel="stylesheet" href="../bower_components/polymerfire/firebase-auth.html">
+<link rel="import" href="../bower_components/polymerfire/firebase-auth.html">
 
 
 <dom-module id="my-view3">
@@ -34,7 +34,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           
           <paper-input label="Name" always-float-label value="[[user.displayName]]"></paper-input>
           <paper-input label="e-mail" always-float-label value="[[user.email]]"></paper-input>
-
+<!--
           <paper-dropdown-menu label="Year of birth">
               <paper-listbox slot="dropdown-content" class="dropdown-content">
                   <paper-item>2019</paper-item>
@@ -99,6 +99,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   <paper-item>1960</paper-item>                   
               </paper-listbox>
             </paper-dropdown-menu>
+          -->
         </form>    
     </iron-form>
         
