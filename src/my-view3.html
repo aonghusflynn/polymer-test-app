@@ -34,72 +34,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           
           <paper-input label="Name" always-float-label value="[[user.displayName]]"></paper-input>
           <paper-input label="e-mail" always-float-label value="[[user.email]]"></paper-input>
-<!--
-          <paper-dropdown-menu label="Year of birth">
-              <paper-listbox slot="dropdown-content" class="dropdown-content">
-                  <paper-item>2019</paper-item>
-                  <paper-item>2018</paper-item>
-                  <paper-item>2017</paper-item>
-                  <paper-item>2016</paper-item>
-                  <paper-item>2015</paper-item>
-                  <paper-item>2014</paper-item>
-                  <paper-item>2013</paper-item>
-                  <paper-item>2012</paper-item>
-                  <paper-item>2011</paper-item>
-                  <paper-item>2010</paper-item>
-                  <paper-item>2009</paper-item>
-                  <paper-item>2008</paper-item>
-                  <paper-item>2007</paper-item>
-                  <paper-item>2006</paper-item>
-                  <paper-item>2005</paper-item>
-                  <paper-item>2004</paper-item>
-                  <paper-item>2003</paper-item>
-                  <paper-item>2002</paper-item>
-                  <paper-item>2001</paper-item>
-                  <paper-item>2000</paper-item>
-                  <paper-item>1999</paper-item>
-                  <paper-item>1998</paper-item>
-                  <paper-item>1997</paper-item>
-                  <paper-item>1996</paper-item>
-                  <paper-item>1995</paper-item>
-                  <paper-item>1994</paper-item>
-                  <paper-item>1993</paper-item>
-                  <paper-item>1992</paper-item>
-                  <paper-item>1991</paper-item>
-                  <paper-item>1990</paper-item>
-                  <paper-item>1989</paper-item>
-                  <paper-item>1988</paper-item>
-                  <paper-item>1987</paper-item>
-                  <paper-item>1986</paper-item>
-                  <paper-item>1985</paper-item>
-                  <paper-item>1984</paper-item>
-                  <paper-item>1983</paper-item>
-                  <paper-item>1982</paper-item>
-                  <paper-item>1981</paper-item>
-                  <paper-item>1980</paper-item>
-                  <paper-item>1979</paper-item>
-                  <paper-item>1978</paper-item>
-                  <paper-item>1977</paper-item>
-                  <paper-item>1976</paper-item>
-                  <paper-item>1975</paper-item>
-                  <paper-item>1974</paper-item>
-                  <paper-item>1973</paper-item>
-                  <paper-item>1972</paper-item>
-                  <paper-item>1971</paper-item>
-                  <paper-item>1970</paper-item>
-                  <paper-item>1969</paper-item>
-                  <paper-item>1968</paper-item>
-                  <paper-item>1967</paper-item>
-                  <paper-item>1966</paper-item>
-                  <paper-item>1965</paper-item>
-                  <paper-item>1964</paper-item>
-                  <paper-item>1963</paper-item>
-                  <paper-item>1962</paper-item>
-                  <paper-item>1961</paper-item>
-                  <paper-item>1960</paper-item>                   
-              </paper-listbox>
-            </paper-dropdown-menu>
-          -->
+
+          <label for="t1">What year were you born?<abbr title="This field is mandatory">*</abbr></label>
+          <input type="text" id="t1" name="age" list="l1" required
+                 pattern="[0-9]{4}">
+          <datalist id="l1">
+            <option>2001</option>
+            <option>2002</option>
+            <option>2003</option>
+            <option>2004</option>
+            <option>2005</option>
+            <option>2006</option>
+          </datalist>
         </form>    
     </iron-form>
         
