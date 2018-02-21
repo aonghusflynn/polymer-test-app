@@ -11,6 +11,7 @@
 <link rel="import" href="../bower_components/polymerfire/firebase-auth.html">
 <link rel="import" href="../bower_components/polymerfire/firebase-app.html">
 <link rel="import" href="../bower_components/google-map/google-map.html">
+
 <dom-module id="my-new-view">
     <!-- Defines the element's style and local DOM -->
     <template id="app" is="dom-bind">
@@ -107,7 +108,7 @@
 </table>
 -->
 <button on-click="signOut">Sign Out</button>
-
+<script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
 <google-map fit-to-markers api-key="AIzaSyBGl-dhMEs6Jvv0IpNz__OF0sTgVvGT_U0">
     <google-map-marker latitude="37.78" longitude="-122.4" draggable="true"></google-map-marker>
   </google-map>

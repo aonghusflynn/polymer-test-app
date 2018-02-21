@@ -22,7 +22,8 @@
     "polymerfire": "^2.2.1",
     "iron-form": "PolymerElements/iron-form#^2.1.6",
     "paper-input-elements": "PolymerElements/paper-input-elements",
-    "google-web-components": "^1.1.2"
+    "google-web-components": "^1.1.2",
+    "google-map": "GoogleWebComponents/google-map#^2.0.3"
   },
   "resolutions": {
     "polymer": "^2.0.0",
